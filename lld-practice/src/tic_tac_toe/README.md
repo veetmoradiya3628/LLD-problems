@@ -76,3 +76,6 @@
 - SOC / SRP - for clean class
 - Observer - for notifying user / score board
 - Strategy - for move strategy
+
+#### Open issues
+1. Game class is having board initialization which is hard dependency, should follow DI (Dependency Inversion) and passed as constructor parameter.
