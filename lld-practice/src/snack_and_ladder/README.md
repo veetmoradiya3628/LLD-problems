@@ -67,9 +67,21 @@
 - Keep code clean and write good code
 
 #### 5. Concurrency & Thread Safety
-
-
+- TODO...
 
 #### 6. Extensions 
+##### 6.1 Configurable Dice Count
+- Let player roll two dice per turn and grant an extra turn when both dice shows the same value
+  - we wrap a dice with diceRoller and call the orchestration logic for N number of dice from this class & game uses diceRoller instead of dice directly.
+
+##### 6.2 Configurable board size and placement strategy
+- The Board constructor already takes a size and a list of BoardEntity objects, so a 10x10 board is just one configuration. To vary how snakes and ladders are placed, we introduce a BoardSetupStrategy that produces the entity list for a given size. A fixed strategy returns a hand-authored layout, while a random strategy generates valid snakes and ladders. The Game.Builder.setBoard step calls the strategy and passes the result to the existing Board constructor.
+
 #### Design patterns & Principles
+- Builder
+- Strategy
+- OCP / SRP
+- Orchestrator 
+
 #### Open issues & Enhancements
+- TODO...
