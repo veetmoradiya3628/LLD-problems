@@ -62,10 +62,14 @@
   - +play()
   - -takeTurn(Player player)
 - Facade pattern - Game as Controller
-- 
 
-#### 4. Code Impl, Run & Test  
-#### 5. Concurrency & Thread Safety 
+#### 4. Code Impl, Run & Test
+- Keep code clean and write good code
+
+#### 5. Concurrency & Thread Safety
+
+
+
 #### 6. Extensions 
 #### Design patterns & Principles
 #### Open issues & Enhancements
