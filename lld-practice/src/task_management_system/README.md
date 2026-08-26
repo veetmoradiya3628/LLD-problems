@@ -15,7 +15,46 @@ Design and implement a Task Management System that allows users to create, assig
   - The system should be extensible to accommodate future enhancements and new features.
 
 #### 2. Core Identity
-
+- TaskManagementSystem - class
+  - serves as the entry point of the application and demonstrates the usage of the task management system.
+- User - class
+  - represents a user in the task management system, with properties such as id, name and email.
+- Comment - class
+  - represents a comment on a task with properties such as content, author (User), id, timestamp
+- ActivityLog - class
+  - represents a Log event on a task with properties such as timestamp, description 
+- Task - class
+  - main class to represent task with properties such as 
+    - id, 
+    - subtasks (List of tasks), 
+    - currentState, 
+    - activityLogs (List<ActivityLogs>), 
+    - tags (Tag), 
+    - description, 
+    - observers (List<Observer>)
+    - createdBy, assignee (User)
+    - List<Comments> - store the list of comments
+    - title
+    - priority (TaskPriority)
+  - additional utility methods for working and updating task item and its metadata
+- Tag - class
+  - simple POJO class for tag name and its methods
+- TaskPriority - ENUM
+  - HIGH, LOW, MEDIUM, CRITICAL etc
+- TaskStatus - ENUM
+  - IN_PROGRESS, DONE, TODO etc
+- TaskState - Interface
+  - to represent the task state management with state design pattern
+  - Implementation includes classes such as InProgressState, TodoState, DoneState
+- TaskList - class
+  - To represent a list of tasks as group with concept as TaskList
+  - contains id, tasks (List<Task>), name etc
+- TaskSortStrategy - interface
+  - base class for implementing listing / sorting list of task based on different strategy, implemented using strategy pattern
+  - Implementation includes SortByDueDate, SortByPriority etc
+- TaskObserver - interface
+  - To implement task change notification with observer pattern
+  - Implementation includes having class as ActivityLogger or etc with update method implementation
 
 #### 3. Design class & relationships
 
