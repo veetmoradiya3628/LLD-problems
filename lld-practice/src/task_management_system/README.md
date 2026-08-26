@@ -117,11 +117,29 @@ Design and implement a Task Management System that allows users to create, assig
 18. DoneState - class implements TaskState
 
 #### 4. Code Impl, Run & Test
+- UML Todo
 
 #### 5. Concurrency & Thread Safety
+- Used ConcurrentHashMap & CopyOnWrite List implementation for thread safe design
+- Used Thread safe version of singleton pattern using synchronized
 
 #### 6. Extensions
+- To add new status or priorities - required enums updates only required
+- Plan for 
+  - deadlines
+  - notifications
+  - task dependencies etc
 
 #### Design patterns & Principles
+- Manager pattern 
+  - Task management system class acts as service / manager for all operations
+- SOC - each class has separate responsibilities
+- Strategy
+  - for different sorting strategies based on parameters for list of tasks
+- State
+  - To manage task's life cycle state management 
+- Observer
+  - To notify on task state change
 
 #### Open issues
+- TODO...
