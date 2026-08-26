@@ -35,8 +35,10 @@ Design and implement a Parking Lot Management System that supports parking and u
   - NearestFirstStrategy
 
 #### 3. Design class & relationships
+- TODO: UML
 
 #### 4. Code Impl, Run & Test
+- Clean, modular and extensible code impl 
 
 #### 5. Concurrency & Thread Safety
 
