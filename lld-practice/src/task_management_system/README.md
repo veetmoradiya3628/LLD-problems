@@ -57,6 +57,64 @@ Design and implement a Task Management System that allows users to create, assig
   - Implementation includes having class as ActivityLogger or etc with update method implementation
 
 #### 3. Design class & relationships
+1. User - class
+   - fields: id string, email string, name string
+   - methods: NA
+
+2. Comment - class
+   - fields: content string, author User, id string, timestamp Date
+   - methods: NA
+
+3. ActivityLog - class
+   - fields: timestamp LocalDateTime, description string
+   - methods: toString(): string
+
+4. Task - class
+   - fields: id string, subtasks List<Task>, currentState TaskState, activityLogs List<ActivityLog>, tags Set<Tag>, description string, observers List<TaskObserver>, createdBy User, dueDate LocalDate, assignee User, comments List<Comment>, title String, priority TaskPriority 
+   - methods: addObserver(TaskObserver): void, startProgress(): void, removeObserver(TaskObserver): void, getStatus(): TaskStatus, reopenTask(): void, updatePriority(TaskPriority): void, addComment(Comment): void, addSubTask(Task): void, completeTask(): void, addLog(String): void, display(String): void, isComposite(): boolean, notifyObservers(String): void, setState(TaskState): void
+
+5. Tag - class
+   - fields: name string
+   - methods: getName(): string
+
+6. TaskList - class
+   - fields: id string, tasks: List<Task>, name: string 
+   - methods: display(): void, addTask(Task): void
+
+7. TaskManagementSystem - class
+   - fields: users Map<string, user>, instance: TaskManagementSystem, taskLists Map<String, TaskList>, tasks: Map<String, Task>
+   - methods: listTaskByUser(String): List<Task>, createTaskList(String): TaskList, searchTask(String, TaskSortStrategy): List<Task>, createUser(String, String): User, createTask(String, String, LocalDate, TaskPriority, String): Task, deleteTask(String): void, getInstance(): TaskManagementSystem, listTaskByStatus(TaskStatus): List<Task>
+
+8. TaskPriority - ENUM
+   - MEDIUM, LOW, HIGH, CRITICAL
+
+9. TaskStatus - ENUM
+   - IN_PROGRESS, DONE, TODO
+
+10. TaskSortStrategy - Interface
+    - sort(List<Task>): void
+
+11. SortByDueDate - class implements TaskSortStrategy
+    - sort(List<Task>): void
+     
+12. SortByPriority - class implements TaskSortStrategy
+    - sort(List<Task>): void
+  
+13. TaskObserver - Interface
+    - update(Task, string): void
+
+14. ActivityLogger - class implements TaskObserver
+    - update(Task, string): void
+
+15. TaskState - Interface
+    - completeTask(Task): void
+    - reopenTask(Task): void
+    - getStatus(): TaskStatus
+    - startProgress(Task): void
+
+16. InProgressState - class implements TaskState
+17. TodoState - class implements TaskState
+18. DoneState - class implements TaskState
 
 #### 4. Code Impl, Run & Test
 
