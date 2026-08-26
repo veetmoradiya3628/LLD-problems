@@ -41,9 +41,17 @@ Design and implement a Parking Lot Management System that supports parking and u
 - Clean, modular and extensible code impl 
 
 #### 5. Concurrency & Thread Safety
+- synchronized blocks added & singleton pattern added
 
 #### 6. Extensions
+- To add new vehicle type update or add VehicleType & its subclass impl
+- To add new fee strategy - Implement a new class in fee
+- To add new spot types or floors - Extend ParkingSpot or ParkingFloor 
 
 #### Design patterns & Principles
+- Strategy pattern for fee calculation & parting spot strategy
+- Factory pattern can be added to support Vehicle creation / Spot creation
+- Singleton pattern for ParkingLot Instance
 
 #### Open issues
+- TODO
