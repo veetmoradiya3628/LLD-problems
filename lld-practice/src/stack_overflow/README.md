@@ -16,6 +16,22 @@ Stack Overflow is one of the most widely used question-and-answer platforms for 
   - Scalability: The design should be scalable to accommodate a growing number of users, questions, and answers.
 
 #### 2. Core Identity
+- User - class
+  - Represents a registered user of the platform. Holds attributes like user ID, display name, and reputation. Responsible for posting content, voting, and earning points.
+- Question
+  - Represents a question posted by a user. Includes title, body, tags, creation timestamp, list of answers, list of comments, votes, and a reference to an accepted answer.
+- Answer
+  - Represents an answer posted to a question. Includes body, author, timestamp, list of comments, and votes. Can be marked as accepted by the original question author.
+- Comment
+  - Represents a comment made on a question or answer. Includes content, author, timestamp, and a reference to the parent post (either a question or answer).
+- Vote
+  - Represents a single upvote or downvote by a user on a question or answer. Includes voter, vote type (up or down), and the target post.
+- Reputation
+  - Represents a user’s score based on community interactions. May be modeled as a field in the User class or as a separate entity if detailed reputation history is needed.
+- Tag
+  - Represents a tag used to categorize questions. Each tag has a name.
+- SearchService (Optional)
+  - Provides methods to perform keyword search and tag-based filtering over the list of questions. May not be an entity per se but a key component of the system.
 
 #### 3. Design class & relationships
 
