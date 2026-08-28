@@ -96,12 +96,37 @@ Stack Overflow is one of the most widely used question-and-answer platforms for 
 - Facade pattern for StackOverflowService which provides high level methods for stack overflow actions
 
 #### 4. Code Impl, Run & Test
+- Clean code implemented
 
 #### 5. Concurrency & Thread Safety
+1. Two Users Voting on the Same Post at Once
+- `vote` method is marked as synchronized
+
+2. Reputation Drifting Under Concurrent Votes
+- storing `reputation` as `AtomicInteger`
+
+3. Accepting an Answer While It Is Being Voted On
+- marked `acceptAnswer` as synchronized
 
 #### 6. Extensions
+1. Badges and Gamification 
+- Award badges when a user crosses milestones, such as a first accepted answer or ten upvotes on a single answer.
+- We can introduce BadgeManager to delegate this operations
+
+2. Full-Text Search Over Questions
+- The keyword search scans every question body on each query, which gets slow as the question count grows. Speed it up with an index.
+- Introduce `IndexedSearchStrategy` builds an inverted index from each term to the questions that contain it, then answers a keyword query from the index instead of scanning every body.
+
+3. Edit History and Version Control of Posts
+- Posts can be edited. Keep every previous version so users can see the edit history and revert if needed.
+- Introduce something like `PostRevision` to manage this.
 
 #### Design patterns & Principles
+- Manager / Facade - StackOverflow service class
+- Strategy - for question search implementation
+- Observer - for post action and its implementation
+- Builder / Factory can be utilized for more robust and clean code 
 
 #### Open issues
+TODO
                 
