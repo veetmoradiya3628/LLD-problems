@@ -34,6 +34,66 @@ Stack Overflow is one of the most widely used question-and-answer platforms for 
   - Provides methods to perform keyword search and tag-based filtering over the list of questions. May not be an entity per se but a key component of the system.
 
 #### 3. Design class & relationships
+- VoteType - ENUM
+  - UPVOTE, DOWNVOTE
+- EventType - ENUM
+  - UPVOTE_QUESTION
+  - DOWNVOTE_QUESTION
+  - UPVOTE_ANSWER
+  - DOWNVOTE_ANSWER
+  - ACCEPT_ANSWER
+- User - class
+  - String id
+  - String name
+  - AtomicInteger reputation
+  - +User(String name)
+  - +updateReputation(int change): void
+- Tag - class
+  - String name
+  - +Tag(String name)
+- Content - abstract class
+  - #String id
+  - #String body
+  - #User author
+  - #LocalDateTime creationTime
+  - +Content(String id, String body, User author)
+- Post - abstract class extends Content
+  - -int voteCount
+  - -Map<String, VoteType> voters
+  - -List<Comment> comments
+  - -List<PostObserver> observers
+  - +addObserver(PostObserver observer): void
+  - #nofifyObservers(Event event): void
+  - +addComment(Comment comment): void
+  - +vote(User user, VoteType voteType): void
+- Question - class
+  - String title
+  - Set<Tag> tags
+  - List<Answer> answers
+  - Answer acceptedAnswer
+  - +addAnswer(Answer answer): void
+  - +acceptAnswer(Answer answer): void
+- Answer - class
+  - boolean isAccepted
+- Comment - class
+  - +Comment(String body, User author)
+- StackOverflowService - class
+  - Map<String, User> users
+  - Map<String, Question> questions
+  - Map<String, Answer> answers
+  - PostObserver reputationManager
+  - createUser(String name): User
+  - postQuestion(String userId, String title, String body, Set<Tag> tags): Question
+  - postAnswer(String userId, String questionId, String body): Answer
+  - addComment(String userid, String postId, String body): Comment
+  - voteOnPost(String postId, String userId, VoteType vote): void
+  - acceptAnswer(String questionId, String answerId): void
+  - searchQuestions(List<SearchStrategy> strategies): List<Question>
+  - getUser(String userId): User
+  - findPostById(String postId): Post
+- Observer pattern for vote and reputation management
+- Strategy pattern for Searching the question
+- Facade pattern for StackOverflowService which provides high level methods for stack overflow actions
 
 #### 4. Code Impl, Run & Test
 
