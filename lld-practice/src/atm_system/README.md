@@ -118,9 +118,18 @@ Design and implement an ATM (Automated Teller Machine) system that allows users 
 15. NoteDispenser50 - extends NoteDispenser 
 
 #### 5. Concurrency & Thread Safety
+- Concurrent data structure used in class
+- Synchronized blocks used to avoid race conditions and wrong updates
 
 #### 6. Extensions
+1. Add mini-statements: Show recent transactions.
+2. Add fund transfers: Allow transfers between accounts.
+3. Add multi-currency support: Handle different currencies and conversions.
 
 #### Design patterns & Principles
+- Singleton - for ATMSystem
+- State - for ATM State management and allowed actions
+- Chain of Responsibility - To process the cash dispensing by large to small notes sequence defined
+- Manager / Facade - BankService & ATMSystem works as abstraction for client
 
 #### Open issues
