@@ -84,9 +84,19 @@ Design and implement a flexible and extensible logging framework that can be use
 - UML TODO...
 
 #### 5. Concurrency & Thread Safety
+- LogManager.getInstance() can be marked as synchronized to handle in multithreaded environment
+- ConcurrentHashMap & CopyOnWriteArrayList data structure used for managing concurrent access.
 
 #### 6. Extensions
+- Adding new log level requires changes in LogLevel
+- Adding new Appender requires implementing LogAppender interface
+- Adding new formatter requires implementing LogFormatter interface
 
 #### Design patterns & Principles
+- Strategy Pattern: For interchangeable log formatters and appenders.
+- Singleton Pattern:  For global logger instance.
+- Async Processing: For logs pushing and processing based on appenders
+- Factory pattern can be used for creating appenders and formatters
 
 #### Open issues
+- Re-visit
