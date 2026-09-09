@@ -13,6 +13,22 @@
   - The Pub-Sub system should be scalable and efficient in terms of message delivery.
 
 #### 2. Core Identity
+- Broker
+  - Manages topics, subscriptions, and message delivery
+- Topic
+  - Represents a topic to which messages can be published and subscribers can subscribe
+- Publisher
+  - Publishes messages to topics via the pubSubService.
+- Subscriber - interface
+  - Interface for all subscribers, defines the consume(Message) method.
+- PrintSubscriber
+  - A subscriber that prints received messages.
+- LoggingSubscriber
+  - A subscriber that logs received messages.
+- Message
+  - Represents a message with a payload.
+- Dispatcher
+  - Handles asynchronous delivery of messages to subscribers.
 
 #### 3. Design class & relationships
 
