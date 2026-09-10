@@ -64,6 +64,9 @@
 #### 5. Concurrency & Thread Safety
 
 #### 6. Extensions
+- 6.1: Attribute based filtering subscription capacity
+- 6.2: Ack handling for the message subscriptions
+- 6.3: Stats capturing and showing in between any time to show these stats - can be in memory implementation
 
 #### Design patterns & Principles
 
