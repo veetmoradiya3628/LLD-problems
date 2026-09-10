@@ -31,6 +31,33 @@
   - Handles asynchronous delivery of messages to subscribers.
 
 #### 3. Design class & relationships
+- Message - class
+  - POJO class to simply implement a message structure
+  - timestamp: Instant
+  - payload: String
+- Topic - class
+  - name: String
+  - deliveryExecutor: ExecutorService
+  - subscribers: Set<Subscriber>
+  - addSubscriber(Subscriber): void
+  - removeSubscriber(Subscriber): void
+  - broadcast(Message): void
+- Subscriber - Interface
+  - onMessage(Message): void
+- AlertSubscriber: class implements Subscriber
+  - id: String
+  - onMessage(Message): void
+- NewsSubscriber: class implements Subscriber
+  - id: String
+  - onMessage(Message): void
+- PubSubService - class
+  - deliveryExecutor: ExecutorService
+  - topicRegistry: Map<String, Topic>
+  - createTopic(String): void
+  - publish(String, message): void
+  - subscribe(String, Subscriber): void
+  - unsubscribe(String, Subscriber): void
+  - shutdown(): void
 
 #### 4. Code Impl, Run & Test
 
