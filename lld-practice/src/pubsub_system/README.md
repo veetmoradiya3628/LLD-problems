@@ -60,11 +60,15 @@
   - shutdown(): void
 
 #### 4. Code Impl, Run & Test
+- TODO
 
 #### 5. Concurrency & Thread Safety
+- Used singleton pattern thread safe version
+- Used thread safe data structure for Map, List etc
 
 #### 6. Extensions
 - 6.1: Attribute based filtering subscription capacity
+  - Implemented
 - 6.2: Ack handling for the message subscriptions
 - 6.3: Stats capturing and showing in between any time to show these stats - can be in memory implementation
 

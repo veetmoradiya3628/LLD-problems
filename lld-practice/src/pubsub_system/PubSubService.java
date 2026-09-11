@@ -1,5 +1,6 @@
 package pubsub_system;
 
+import pubsub_system.entities.AllowAllFilter;
 import pubsub_system.entities.Message;
 import pubsub_system.entities.MessageFilter;
 import pubsub_system.entities.Topic;
@@ -29,6 +30,11 @@ public class PubSubService {
     public void createTopic(String topicName) {
         topicRegistry.putIfAbsent(topicName, new Topic(topicName, deliveryExecutor));
         System.out.println("Topic " + topicName + " created");
+    }
+
+    // Overloaded method to support subscribing without passing a specific filter
+    public void subscribe(String topicName, Subscriber subscriber) {
+        subscribe(topicName, subscriber, new AllowAllFilter());
     }
 
     public void subscribe(String topicName, Subscriber subscriber, MessageFilter filter) {

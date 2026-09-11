@@ -15,9 +15,9 @@ public class PubSubDemo {
         broker.createTopic(topicName);
 
         // 1. Create Subscribers
-        Subscriber allEventsSub = new ConsoleSubscriber("All-Events-Monitor");
-        Subscriber usRegionSub = new ConsoleSubscriber("US-Region-App");
-        Subscriber highPrioritySub = new ConsoleSubscriber("High-Priority-Alerts");
+        Subscriber allEventsSub = new NewsSubscriber("All-Events-Monitor");
+        Subscriber usRegionSub = new NewsSubscriber("US-Region-App");
+        Subscriber highPrioritySub = new NewsSubscriber("High-Priority-Alerts");
 
         // 2. Subscribe with rules
         // Receives everything
