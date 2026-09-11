@@ -1,6 +1,7 @@
 package pubsub_system;
 
 import pubsub_system.entities.Message;
+import pubsub_system.entities.MessageFilter;
 import pubsub_system.entities.Topic;
 import pubsub_system.subscriber.Subscriber;
 
@@ -30,11 +31,11 @@ public class PubSubService {
         System.out.println("Topic " + topicName + " created");
     }
 
-    public void subscribe(String topicName, Subscriber subscriber) {
+    public void subscribe(String topicName, Subscriber subscriber, MessageFilter filter) {
         Topic topic = topicRegistry.get(topicName);
         if (topic == null)
             throw new IllegalArgumentException("Topic not found: " + topicName);
-        topic.addSubscriber(subscriber);
+        topic.addSubscriber(subscriber, filter);
         System.out.println("Subscriber '" + subscriber.getId() + "' subscribed to topic: " + topicName);
     }
 

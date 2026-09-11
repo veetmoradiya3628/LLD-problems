@@ -1,67 +1,60 @@
 package pubsub_system;
 
+import pubsub_system.entities.ExactAttributeFilter;
 import pubsub_system.entities.Message;
 import pubsub_system.subscriber.AlertSubscriber;
 import pubsub_system.subscriber.NewsSubscriber;
 import pubsub_system.subscriber.Subscriber;
 
+import java.util.Map;
+
 public class PubSubDemo {
     public static void main(String[] args) throws InterruptedException {
-        PubSubService pubSubService = PubSubService.getInstance();
+        PubSubService broker = PubSubService.getInstance();
+        String topicName = "ORDER_EVENTS";
+        broker.createTopic(topicName);
 
-        Subscriber sportsFan1 = new NewsSubscriber("SportsFan1");
-        Subscriber sportsFan2 = new NewsSubscriber("SportsFan2");
-        Subscriber techie1 = new NewsSubscriber("Techie1");
-        Subscriber allNewsReader = new NewsSubscriber("AllNewsReader");
-        Subscriber systemAdmin = new AlertSubscriber("SystemAdmin");
+        // 1. Create Subscribers
+        Subscriber allEventsSub = new ConsoleSubscriber("All-Events-Monitor");
+        Subscriber usRegionSub = new ConsoleSubscriber("US-Region-App");
+        Subscriber highPrioritySub = new ConsoleSubscriber("High-Priority-Alerts");
 
-        // --- Create Topics and Subscriptions ---
-        final String SPORTS_TOPIC = "SPORTS";
-        final String TECH_TOPIC = "TECH";
-        final String WEATHER_TOPIC = "WEATHER";
+        // 2. Subscribe with rules
+        // Receives everything
+        broker.subscribe(topicName, allEventsSub);
 
-        pubSubService.createTopic(SPORTS_TOPIC);
-        pubSubService.createTopic(TECH_TOPIC);
-        pubSubService.createTopic(WEATHER_TOPIC);
+        // Receives only if region=US
+        broker.subscribe(topicName, usRegionSub,
+                new ExactAttributeFilter(Map.of("region", "US")));
 
-        pubSubService.subscribe(SPORTS_TOPIC, sportsFan1);
-        pubSubService.subscribe(SPORTS_TOPIC, sportsFan2);
-        pubSubService.subscribe(SPORTS_TOPIC, allNewsReader);
-        pubSubService.subscribe(SPORTS_TOPIC, systemAdmin);
+        // Receives only if priority=HIGH
+        broker.subscribe(topicName, highPrioritySub,
+                new ExactAttributeFilter(Map.of("priority", "HIGH")));
 
-        pubSubService.subscribe(TECH_TOPIC, techie1);
-        pubSubService.subscribe(TECH_TOPIC, allNewsReader);
+        // 3. Publish Messages
+        System.out.println("--- Publishing Message 1 (EU, LOW) ---");
+        broker.publish(topicName, new Message("Order 101 Created", Map.of(
+                "region", "EU",
+                "priority", "LOW"
+        )));
 
-        System.out.println("\n--- Publishing Messages ---");
+        // Small sleep to ensure readable console output order for async threads
+        Thread.sleep(100);
 
-        // --- Publish to SPORTS topic ---
-        pubSubService.publish(SPORTS_TOPIC, new Message("Team A wins the championship!"));
-        // Expected: SportsFan1, SportsFan2, AllNewsReader, SystemAdmin receive this.
+        System.out.println("\n--- Publishing Message 2 (US, LOW) ---");
+        broker.publish(topicName, new Message("Order 102 Created", Map.of(
+                "region", "US",
+                "priority", "LOW"
+        )));
 
-        // --- Publish to TECH topic ---
-        pubSubService.publish(TECH_TOPIC, new Message("New AI model released."));
-        // Expected: Techie1, AllNewsReader receive this.
+        Thread.sleep(100);
 
-        // --- Publish to WEATHER topic (no subscribers) ---
-        pubSubService.publish(WEATHER_TOPIC, new Message("Sunny with a high of 75°F."));
-        // Expected: Message is dropped.
+        System.out.println("\n--- Publishing Message 3 (US, HIGH) ---");
+        broker.publish(topicName, new Message("Order 103 Failed", Map.of(
+                "region", "US",
+                "priority", "HIGH"
+        )));
 
-        // Allow some time for async messages to be processed
-        Thread.sleep(500);
-
-        System.out.println("\n--- Unsubscribing a user and re-publishing ---");
-
-        // SportsFan2 gets tired of sports news
-        pubSubService.unsubscribe(SPORTS_TOPIC, sportsFan2);
-
-        // Publish another message to SPORTS
-        pubSubService.publish(SPORTS_TOPIC, new Message("Major player traded to Team B."));
-        // Expected: SportsFan1, AllNewsReader, SystemAdmin receive this. SportsFan2 does NOT.
-
-        // Give messages time to be delivered
-        Thread.sleep(500);
-
-        // --- Shutdown the service ---
-        pubSubService.shutdown();
+        broker.shutdown();
     }
 }
