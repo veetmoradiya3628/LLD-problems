@@ -53,13 +53,23 @@
   - implementation in moving up state
 
 #### 3. Design class & relationships
+Done
 
 #### 4. Code Impl, Run & Test
+Done
 
 #### 5. Concurrency & Thread Safety
+- Atomic Integer for currentFloor of elevator
+- Synchronized method for getInstance and addRequest
 
 #### 6. Extensions
+- Advanced scheduling: Implement algorithms for optimal elevator assignment.
+- Add features: Such as maintenance mode, emergency stop, or floor elevatorDisplay.
 
 #### Design patterns & Principles
+- Singleton pattern for managing multiple elevators from ElevatorSystem class as singleton class
+- State design pattern for elevator state specific implementation as IdleState, Moving Up and Down State
+- Observer pattern for elevator display
+- Strategy pattern for implementing elevator for request based on different strategy
 
 #### Open issues
