@@ -77,9 +77,20 @@
 #### 4. Code Impl, Run & Test
 
 #### 5. Concurrency & Thread Safety
+- Concurrent data structures and synchronized methods declarations used to handle concurrent behaviour
 
 #### 6. Extensions
+- Add expense categories: Categorize expenses (food, travel, etc.)
+- Add recurring expenses: Support for regular payments
+- Add expense comments: Allow users to add notes to expenses
+- Add expense attachments: Support for receipts and documents
+- Add payment integration: Integrate with payment gateways
+- Add notification system: Send reminders for pending payments
 
 #### Design patterns & Principles
+- Singleton - for SplitWiseSystem
+- Facade for SplitWiseSystem to support end user operations abstractions
+- Strategy - for different split strategies
+- Builder - for Expense object creation
 
 #### Open issues
