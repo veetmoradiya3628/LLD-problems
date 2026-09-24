@@ -11,9 +11,23 @@ Design and implement a Vending Machine system that allows users to select produc
   - User Interactions - Users can select products, insert coins/notes, and receive products and change.
   - Extensibility - Easy to add new item types, payment methods, or states.
 - Non-Functional Requirement
-  - Concurrency handling in multi threaded system
+  - Concurrency handling in multithreaded system
 
 #### 2. Core Identity
+- VendingMachine - class
+  - Main class that manages inventory, vendingMachineState transitions, item selection, and payment
+- Product/Item - class
+  - Represents a item with a name and price
+- Inventory - class
+  - Manages the stock of products
+- Coin / Note - class
+  - Represents accepted denominations for payment
+- VendingMachineState - interface
+  - Interface for different machine states
+- IdleState, ReadyState, DispenseState, ReturnChangeState - class
+  - Concrete states implementing VendingMachineStates
+- Coin - ENUM
+  - represents different types of coins
 
 #### 3. Design class & relationships
 
@@ -24,5 +38,7 @@ Design and implement a Vending Machine system that allows users to select produc
 #### 6. Extensions
 
 #### Design patterns & Principles
+- Singleton pattern - VendingMachine is implemented as singleton
+- State pattern - different ATM-machine state and its operations are represented as state classes
 
 #### Open issues
