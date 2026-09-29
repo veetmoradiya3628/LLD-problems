@@ -7,14 +7,12 @@
    
 #### 2. Core Identity
 
-#### 3. Design class & relationships
+#### 3. Design class & relationships (Code Impl, Run & Test)
 
-#### 4. Code Impl, Run & Test
+#### 4. Design patterns & Principles
 
 #### 5. Concurrency & Thread Safety
 
-#### 6. Extensions
+#### 6. Algorithmic Complexities (Core Flows)
 
-#### Design patterns & Principles
-
-#### Open issues
+#### 7. Open issues & Future Extensions

@@ -24,14 +24,22 @@
 - CarType - ENUM
 - CarStatus - ENUM
 
-#### 3. Design class & relationships
-
-#### 4. Code Impl, Run & Test
-
-#### 5. Concurrency & Thread Safety
+#### 3. Concurrency & Thread Safety
+- Concurrency bottlenecks 
+  - synchronized blocks entire method is not a good approach instead move to Lock at resource level or move to ReentrantLock and conditions
+- Algorithms efficiency in query
+  - `isCarAvailable` method is O(N) which will not scale in huge number of reservations, think of data structures like Interval Tree or something
+- DI Violation
+  - `PaymentProcess` is being hardcoded in `CarRentalSystem` class, it can be passed as method parameter or FactoryMethod can be used to get at runtime
+- State machine transition
+  - Utilize ENUMS for proper state management instead of booleans
 
 #### 6. Extensions
+- from in-memory to database transition, how it will be ?
+- distributed locking with redis or something in multi-node environment
 
 #### Design patterns & Principles
+- Singleton for `CarRentalSystem`
+- Strategy for `PaymentProcessor`
 
 #### Open issues
