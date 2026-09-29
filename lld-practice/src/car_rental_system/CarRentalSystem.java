@@ -62,7 +62,7 @@ public class CarRentalSystem {
     }
 
     public synchronized Reservation makeReservation(Customer customer, Car car, LocalDate startDate, LocalDate endDate) {
-        if (isCarAvailable(car, startDate, endDate)) {
+        if (car.isAvailable() && isCarAvailable(car, startDate, endDate)) {
             String reservationId = generateReservationId();
             Reservation reservation = new Reservation(reservationId, customer, car, startDate, endDate);
             reservations.put(reservationId, reservation);
@@ -85,5 +85,11 @@ public class CarRentalSystem {
 
     private String generateReservationId() {
         return "RES" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+    }
+
+    // internal for testing purpose
+    void clearSystemForTesting() {
+        this.cars.clear();
+        this.reservations.clear();
     }
 }
