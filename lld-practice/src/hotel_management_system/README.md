@@ -222,7 +222,6 @@ classDiagram
     RoomBooking --> Room
 ```
 
-
 #### 4. Design patterns & Principles
 
 #### 5. Concurrency & Thread Safety
