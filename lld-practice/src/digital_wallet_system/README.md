@@ -26,6 +26,11 @@
 #### 3. Design class & relationships (Code Impl, Run & Test)
 
 #### 4. Design patterns & Principles
+- Singleton pattern - for wallet management
+- Interface with class implementation for processing payment different methods
+- SRP for individual classes
+- helper classes as converter utils etc
+- errors & types as enum const in different files for better management
 
 #### 5. Concurrency & Thread Safety
 
