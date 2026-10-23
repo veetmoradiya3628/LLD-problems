@@ -25,6 +25,17 @@ func (s *Seat) Reserve() {
 	s.status = SeatStatusReserved
 }
 
+func (s *Seat) TryReserve() bool {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	if s.status != SeatStatusAvailable {
+		return false
+	}
+	s.status = SeatStatusReserved
+	return true
+}
+
 // Release
 func (s *Seat) Release() {
 	s.mu.Lock()
